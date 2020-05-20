@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+:root {
+  --primary-color: #fffcf2;
+  --secondary-color: #ccc5b9;
+  --third-color: #403d39;
+  --fourth-color: #252422;
+  --fifth-color: #eb5e28;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary-color);
+}
+
+form {
+  border: 10px solid black;
+  margin: 94px auto;
+  width: 50%;
+  height: 400px;
+  padding: 0 24px;
+  background-color: var(--primary-color);
+
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+
+}
+
+.inputs {
+  margin: 16px auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 125px;
+
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 94px 1fr 60px;
+  gap: 8px;
+  align-items: center;
+
+}
+
+.item span,
+input {
+  color: var(--fourth-color);
+  font-family: Anton;
+}
+
+.item input {
+  text-align: center;
+}
+
+.item input[type="range"] {
+  -webkit-appearance: none;
+  background-image: linear-gradient(to right, #000000, #3e1920, #78292e, #b43f32, #eb5e28);
+  height: 5px;
+  opacity: 0.5;
+  width: 300px;
+  border-radius: 40%;
+}
+
+/* barra de progresso */
+.item input[type="range"]:hover {
+  transition: 0.2s ease-in-out;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.item input[type=range]::-moz-range-thumb {
+  background: black;
+  opacity: 1;
+}
+
+.quadrado {
+  border-radius: 20%;
+  border: 1px solid black;
+  height: 300px;
+  width: 300px;
+  margin-left: 140px;
+  color:rgb(50,200, 255);
+
+
+}
