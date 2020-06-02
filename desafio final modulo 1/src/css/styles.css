@@ -45,6 +45,7 @@ img {
 }
 
 .input {
+
   margin-top: 16px;
   display: grid;
   grid-template-columns: 1fr 120px;
@@ -59,15 +60,20 @@ img {
   margin-left: 50px;
   font-size: 18px;
   font-family: 'Roboto';
-  background-color: #1d1c24;
+  background: #3a3a3d;
   text-decoration: none;
   box-shadow: 0 0 0 0;
   border: 0 none;
   outline: 0;
-  border: 1px solid var(--primary-color);
 
 }
 
+#input:hover,
+#input:focus {
+  border: 1px solid var(--primary-color);
+  background: black;
+  transition: 0.5s;
+}
 
 #buttonSearch {
   background: var(--primary-color);
@@ -87,7 +93,7 @@ img {
 .listUsers,
 .statistics {
   border: 1px solid var(--primary-color);
- 
+
 }
 
 .listUsers h3,
