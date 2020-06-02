@@ -6,27 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
   <link rel="stylesheet" href="./css/styles.css" />
 
   <title>Desafio final modulo 1</title>
 </head>
 
 <body>
-  <h1>Pesuisa de usuarios</h1>
-  <input type="text" id="input">
-  <button class="btn" id="buttonSearch">Pesquisar</button>
-  <div class="container">
-    <div id="listUsers">
+  <div class="main">
+
+    <h1>Pesquisa de usuarios</h1>
+    <div class="input">
+      <input type="text" id="input" autofocus>
+      <button class="btn" id="buttonSearch">Pesquisar</button>
 
     </div>
-    <div class="statistics">
-      <h3> Estatísticas</h3>
-      <span id="totalMale"></span>
-      <span id="totalFemale"></span>
-      <span id="sumAge"></span>
-      <span id="avgAge"></span>
 
+    <div class="container">
+
+      <div class="listUsers">
+        <h3 id="totalUsers">Nenhum usuário filtrado</h3>
+
+      </div>
+      <div class="statistics">
+        <h3 id="statistics"> Nada a ser exbido</h3>
+        <span id="totalMale"></span>
+        <span id="totalFemale"></span>
+        <span id="sumAge"></span>
+        <span id="avgAge"></span>
+
+      </div>
     </div>
   </div>
 

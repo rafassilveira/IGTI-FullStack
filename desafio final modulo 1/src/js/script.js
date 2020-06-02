@@ -5,19 +5,23 @@ let allUsers = [],
   buttonSearch,
   usersHTML,
   userHTML,
+  totalUsers,
   totalFemale = 0,
   totalMale = 0,
-  totalAge = 0;
-totalAvg = 0;
+  totalAge = 0,
+  totalAvg = 0,
+  statistics;
 
 window.addEventListener("load", () => {
   inputValue = document.querySelector("#input");
   buttonSearch = document.querySelector("#buttonSearch");
-  listUsers = document.querySelector("#listUsers");
+  listUsers = document.querySelector(".listUsers");
+  totalUsers = document.querySelector("#totalUsers");
   male = document.querySelector("#totalMale");
   female = document.querySelector("#totalFemale");
   sumAge = document.querySelector("#sumAge");
   avgAge = document.querySelector("#avgAge");
+  statistics = document.querySelector("#statistics");
   fetchUsers();
 });
 
@@ -48,7 +52,6 @@ function enterPressed() {
     }
   });
 }
-
 function searchClickted() {
   buttonSearch.addEventListener("click", () => {
     catchUsers();
@@ -64,15 +67,17 @@ function catchUsers() {
   renderUsers();
   renderStatistic();
 }
-
 function renderUsers() {
-  let usersHTML = `<div> <h3>${newUsers.length} usuário(s) encontado(s)</h3>`;
+  totalUsers.textContent = `${newUsers.length} usuário(s) encontado(s)`;
+  console.log(totalUsers);
+
+  let usersHTML = `<div> <h3>${totalUsers.textContent}</h3>`;
   newUsers.forEach((user) => {
     const { name, age, gender, picture } = user;
     const userHTML = `    
-    <div>
+    <div class="user">
       <img src="${picture}" alt="${name}">
-      <span>${name}, ${age}</span>
+      <span >${name}, ${age}</span>
       
     </div>
     
@@ -83,8 +88,8 @@ function renderUsers() {
   usersHTML += "</div>";
   listUsers.innerHTML = usersHTML;
 }
-
 function renderStatistic() {
+  statistics.textContent = "Estatística";
   calcGenders();
   calcAge();
   calcAvg();
@@ -106,7 +111,6 @@ function calcAge() {
   }, 0);
   sumAge.innerHTML = `Somas das idades:<strong>${totalAge}</strong>`;
 }
-
 function calcAvg() {
   totalAvg = Math.round(totalAge / newUsers.length);
 
