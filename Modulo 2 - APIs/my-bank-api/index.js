@@ -34,6 +34,18 @@ app.post("/account", (req, res) => {
   return res.send("teste");
 });
 
+app.get("/account", (_, res) => {
+  fs.readFile("accounts.json", "utf8", (err, data) => {
+    if (!err) {
+      let json = JSON.parse(data);
+      delete json.nextId;
+      res.send(json);
+    } else {
+      res.status(400).send({ error: err.message });
+    }
+  });
+});
+
 app.listen(3000, () => {
   // verificar se o arquivo de com as contas já existe(acconts.json)
   // usando try catch para não quebrar a aplicação
@@ -44,7 +56,7 @@ app.listen(3000, () => {
           nextId: 1,
           accounts: [],
         };
-        fs.writeFile("acounts.json", JSON.stringify(initialJson), (err) => {
+        fs.writeFile("accounts.json", JSON.stringify(initialJson), (err) => {
           if (err) {
             console.log(err);
           }
