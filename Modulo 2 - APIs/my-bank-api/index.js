@@ -33,6 +33,7 @@ app.post("/account", (req, res) => {
 
   return res.send("teste");
 });
+//teste
 
 app.get("/account", (_, res) => {
   fs.readFile("accounts.json", "utf8", (err, data) => {
