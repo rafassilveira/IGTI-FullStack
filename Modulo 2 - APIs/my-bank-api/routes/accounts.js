@@ -55,7 +55,6 @@ router.get('/:id',(req,res)=>{
       }     
     })     
 })
-
 router.delete('/:id',(req,res)=>{
   fs.readFile(global.fileName, "utf8", (err, data) => {     
     try {
@@ -76,4 +75,55 @@ router.delete('/:id',(req,res)=>{
       }     
     })     
 })
-  module.exports = router;
+router.put('/',(req,res)=>{
+  let newAccount = req.body;
+    fs.readFile(global.fileName, "utf8", (err, data) => {
+      try {
+        if (err) throw err;
+        let json= JSON.parse(data)
+        let oldIndex = json.accounts.findIndex(account => account.id === newAccount.id)
+        json.accounts[oldIndex].name = newAccount.name;
+        json.accounts[oldIndex].balance = newAccount.name;
+        
+        fs.writeFile(global.fileName, JSON.stringify(json), (err) => {
+          if (err) {
+            res.status(400).send({ error: err.message });
+          } else {
+            res.end();
+          }
+        });  
+        res.end()
+
+      } catch (err) {
+        res.status(400).send({ error: err.message }); 
+      }
+    })
+})
+router.post('/transaction',(req,res)=>{
+  let params = req.body;
+ 
+  fs.readFile(global.fileName, "utf8", (err, data) => {
+    try {
+      if (err) throw err;
+      let json= JSON.parse(data)
+      let index = json.accounts.findIndex(account => account.id === newAccount.id)
+      if((params.value<0) && (json.accounts[index].balance + params.value)<0){
+        throw new Error('Não há saldo suficiente')
+      }
+      json.accounts[index].balance+= params.value
+      fs.writeFile(global.fileName, JSON.stringify(json), (err) => {
+        if (err) {
+          res.status(400).send({ error: err.message });
+        } else {
+          res.send(json.accounts[index]);
+        }
+      });  
+      res.end()
+
+    } catch (err) {
+      res.status(400).send({ error: err.message }); 
+    }
+  })
+})
+
+module.exports = router;
