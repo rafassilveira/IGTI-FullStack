@@ -7,10 +7,8 @@ export default class App extends Component {
       <Fragment>
         <Counter />
         <Counter />
-        
+        <Counter />
       </Fragment>
-		
-		
     );
   }
 }
