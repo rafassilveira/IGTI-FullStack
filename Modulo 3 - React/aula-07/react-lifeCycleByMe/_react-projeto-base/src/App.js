@@ -24,10 +24,11 @@ export default class App extends Component {
     });
   }
 
-  // event é a variavel qe chega com o método onChange
+  // isChecked é a variavel qe chega com o método onChange
   handleShowUsers = (isChecked) => {
     this.setState({ showUsers: isChecked });
   };
+
   render() {
     const { showUsers, users } = this.state;
 

@@ -7,6 +7,7 @@ export default class Toggle extends Component {
     const isChecked = event.target.checked;
 
     onToggle(isChecked);
+	 
   };
 
   render() {
