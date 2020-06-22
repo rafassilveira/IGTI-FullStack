@@ -7,7 +7,8 @@ import Value from "./Value";
 import Steps from "./Steps";
 
 export default class Counter2 extends Component {
-  handleButtonClick = (clickType) => {
+  handleButtonClick = (clickType) => {    
+
     this.props.onCount(clickType);
   };
   render() {
@@ -17,9 +18,7 @@ export default class Counter2 extends Component {
         <DecrementButton onDecrement={this.handleButtonClick} />
 
         <Value value={countValue} />
-
         <IncrementButton onIncrement={this.handleButtonClick} />
-
         <Steps currentStep={currentStep} />
       </div>
     );
