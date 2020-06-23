@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import ProjetoBase from "./components/ProjetoBase/ProjetoBase";
-
+import Countries from './components/countries/Countries'
+import Header from './components/header/Header'
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      allContries: [],
+      allCountries: [],
     };
   }
 
@@ -16,7 +16,7 @@ export default class App extends Component {
     const json = await res.json();
     // Fazendo um map dentro do resultado da requisição a api para trazer alguns
     // dados da API, dentro do map estamos fazendo a desestruturação direto
-    const allContries = json.map(({ numericCode, name, flag, population }) => {
+    const allCountries = json.map(({ numericCode, name, flag, population }) => {
       return {
         id: numericCode,
         name,
@@ -25,13 +25,16 @@ export default class App extends Component {
       };
     });
     this.setState({
-      allContries: json,
+      allCountries: json,
     });
   }
   render() {
+	  const {allCountries} = this.state
     return (
       <div className="container">
-        <h1>Reac Countries</h1>
+		<Header />	
+        <h1>React Countries</h1>
+			<Countries countries={allCountries}/>
       </div>
     );
   }
