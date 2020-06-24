@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import Countries from './components/countries/Countries'
-import Header from './components/header/Header'
+import Countries from "./components/countries/Countries";
+import Header from "./components/header/Header";
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       allCountries: [],
+      // boa pratica criar outra varipavel com os paises filtrados
+      filteredCountries: [],
+      filterPopulation: 0,
+      // os estados do react do tipo input não podem ser null ou undefined
+      filter: "",
     };
   }
 
@@ -20,21 +25,48 @@ export default class App extends Component {
       return {
         id: numericCode,
         name,
+        filterName: name.toLowerCase(),
         flag,
         population,
       };
     });
     this.setState({
-      allCountries: json,
+      allCountries,
+      filteredCountries: Object.assign([], allCountries),
     });
   }
+  // var newFilter é o evento que o usuario digitou
+  handleChangeFilter = (newText) => {
+    this.setState({
+      filter: newText,
+    });
+    const filterLowerCase = newText.toLowerCase();
+
+    const filteredCountries = this.state.allCountries.filter((country) => {
+      return country.filterName.includes(filterLowerCase);
+    });
+
+    const filterPopulation = filteredCountries.reduce((acc, current) => {
+      return acc + current.population;
+    }, 0);
+
+    this.setState({
+      filteredCountries,
+      filterPopulation,
+    });
+  };
   render() {
-	  const {allCountries} = this.state
+    const { filteredCountries, filter, filterPopulation } = this.state;
     return (
       <div className="container">
-		<Header />	
         <h1>React Countries</h1>
-			<Countries countries={allCountries}/>
+        <Header
+          filter={filter}
+          countryCount={filteredCountries.length}
+          totalPopulation={filterPopulation}
+          onChangeFilter={this.handleChangeFilter}
+        />
+        <Countries countries={filteredCountries} />
       </div>
     );
   }
