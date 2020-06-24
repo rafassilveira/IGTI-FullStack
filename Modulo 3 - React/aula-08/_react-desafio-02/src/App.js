@@ -30,12 +30,22 @@ export default class App extends Component {
         population,
       };
     });
+
+    const filterPopulation = this.calculateTotalPopulationFrom(allCountries);
+
     this.setState({
       allCountries,
       filteredCountries: Object.assign([], allCountries),
+      filterPopulation
     });
   }
-  // var newFilter é o evento que o usuario digitou
+  calculateTotalPopulationFrom = (countries) => {
+    const totalPopulation = countries.reduce((acc, current) => {
+      return acc + current.population;
+    }, 0);
+    return totalPopulation;
+  };
+  // var newText é o evento que o usuario digitou
   handleChangeFilter = (newText) => {
     this.setState({
       filter: newText,
@@ -46,9 +56,9 @@ export default class App extends Component {
       return country.filterName.includes(filterLowerCase);
     });
 
-    const filterPopulation = filteredCountries.reduce((acc, current) => {
-      return acc + current.population;
-    }, 0);
+    const filterPopulation = this.calculateTotalPopulationFrom(
+      filteredCountries
+    );
 
     this.setState({
       filteredCountries,
