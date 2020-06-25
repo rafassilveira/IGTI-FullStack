@@ -12,6 +12,7 @@ export default class Header extends Component {
     return (
       <div className={css.flexRow}>
         <input
+          placeholder="filtro"
           style={{ width: "100%" }}
           type="text"
           value={filter}

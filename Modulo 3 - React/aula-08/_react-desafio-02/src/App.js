@@ -36,7 +36,7 @@ export default class App extends Component {
     this.setState({
       allCountries,
       filteredCountries: Object.assign([], allCountries),
-      filterPopulation
+      filterPopulation,
     });
   }
   calculateTotalPopulationFrom = (countries) => {
@@ -69,7 +69,7 @@ export default class App extends Component {
     const { filteredCountries, filter, filterPopulation } = this.state;
     return (
       <div className="container">
-        <h1>React Countries</h1>
+        <h1 style={styles.centeredTitle}>React Countries</h1>
         <Header
           filter={filter}
           countryCount={filteredCountries.length}
@@ -81,3 +81,8 @@ export default class App extends Component {
     );
   }
 }
+const styles = {
+  centeredTitle: {
+    textAlign: "center",
+  },
+};
